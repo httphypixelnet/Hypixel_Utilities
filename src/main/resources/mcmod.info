@@ -1,15 +1,15 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "Hypixel-Utils",
+  "name": "Hypixel Utilities",
+  "description": "Utility mod for hypixel",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude", "dxxxxy"],
-  "credits": "The Forge and FML guys, for making this example. dxxxxy for fixing it.",
-  "logoFile": "",
+  "url": "https://github.com/sweatyjujunon/Hypixel_Utilities",
+  "updateUrl": "https://github.com/sweatyjujunon/Hypixel_Utilities/releases",
+  "authorList": ["Sweatyjujunon"],
+  "credits": "httphypixelnet for helping a lil",
+  "logoFile": "icon.png",
   "screenshots": [],
   "dependencies": []
 }
