@@ -40,7 +40,7 @@ public class ExampleMod {
                     if (!player.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) {
                         double lvl = HypixelAPI.getBedwarsLevel(player.getUniqueID());
                         mc.thePlayer.addChatMessage(new ChatComponentText(player.getName() + " is level " + lvl));
-                        if (lvl > 1 && HypixelUtils.hasLine("Mode: 4v4")) {
+                        if (lvl > 2 && HypixelUtils.hasLine("Mode: 4v4")) {
                             mc.thePlayer.addChatMessage(new ChatComponentText("Warping To Lobby"));
                             HypixelUtils.sendCommand("/lobby");
                             try {
