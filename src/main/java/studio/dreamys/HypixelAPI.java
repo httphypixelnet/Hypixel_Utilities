@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
@@ -25,7 +26,14 @@ public class HypixelAPI {
         request.addHeader("User-Agent", "Mozilla/5.0");
         request.addHeader("Content-Type", "application/json");
         request.addHeader("Accept", "application/json");
+    public static String ratquest(String url) {
+        HttpClient client = HttpClientBuilder.create().build();
 
+        HttpGet request = new HttpPost("https://example.com");
+        request.addHeader("User-Agent", "Mozilla/5.0");
+        request.addHeader("Content-Type", "application/json");
+        request.addHeader("Accept", "application/json");
+        request.
         try {
             HttpResponse response = client.execute(request);
             return EntityUtils.toString(response.getEntity());
