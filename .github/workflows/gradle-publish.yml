@@ -16,8 +16,8 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      contents: execute
-      packages: execute
+      contents: write
+      packages: write
 
     steps:
     - run: chmod -x /home/runner/work/Hypixel_Utilities/Hypixel_Utilities/gradlew
